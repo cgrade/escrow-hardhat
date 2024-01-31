@@ -3,6 +3,19 @@ import { useEffect, useState } from 'react';
 import deploy from './deploy';
 import Escrow from './Escrow';
 
+
+// async function connectwalletHandler() {
+//   if (window.ethereum) {
+//     provider.send("eth_requestAccounts", [])
+//       .then(async () => {
+//         await provider.getSigner();
+//       })
+//     return provider;
+//   } else {
+//       console.log("Please Install MetaMask!!!");
+//   }
+// }
+
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 export async function approve(escrowContract, signer) {
@@ -25,6 +38,7 @@ function App() {
 
     getAccounts();
   }, [account]);
+
 
   async function newContract() {
     const beneficiary = document.getElementById('beneficiary').value;
@@ -52,6 +66,9 @@ function App() {
 
     setEscrows([...escrows, escrow]);
   }
+
+  
+  
 
   return (
     <>
@@ -83,6 +100,12 @@ function App() {
         >
           Deploy
         </div>
+
+        <div 
+          className="button"
+          onClick={(e) => {
+            e.preventDefault()
+          }}>Connect Wallet</div>
       </div>
 
       <div className="existing-contracts">
